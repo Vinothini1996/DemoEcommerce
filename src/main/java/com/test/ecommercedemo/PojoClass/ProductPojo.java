@@ -1,17 +1,17 @@
 package com.test.ecommercedemo.PojoClass;
 
 public class ProductPojo {
-    int id;
-    String name;
-    String description;
-    int price;
-    int stock_available;
+    private Integer id;
+    private String name;
+    private String description;
+    private Integer price;
+    private Integer stockAvailable;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -31,19 +31,27 @@ public class ProductPojo {
         this.description = description;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
-    public int getStock_available() {
-        return stock_available;
+    public Integer getStockAvailable() {
+        return stockAvailable;
     }
 
-    public void setStock_available(int stock_available) {
-        this.stock_available = stock_available;
+    public void setStockAvailable(Integer stockAvailable) {
+        this.stockAvailable = stockAvailable;
+    }
+
+    public ProductPojo(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public ProductPojo() {
     }
 }

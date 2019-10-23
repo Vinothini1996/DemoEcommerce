@@ -1,21 +1,37 @@
 package com.test.ecommercedemo.PojoClass;
 
+import com.test.ecommercedemo.Entity.Product;
+import com.test.ecommercedemo.Entity.User;
+
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 public class CartItemsPojo {
-    int id;
-    int user_id;
-    int product_id;
+    private Integer id;
+    private UserPojo user;
+    private ProductPojo product;
 
-    public int getId() { return id; }
+    public Integer getId() {
+        return id;
+    }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-    public int getUser_id() { return user_id; }
+    public UserPojo getUser() {
+        return user;
+    }
 
-    public void setUser_id(int user_id) { this.user_id = user_id; }
+    public void setUser(UserPojo user) {
+        this.user = user;
+    }
 
-    public int getProduct_id() { return product_id; }
+    public ProductPojo getProduct() {
+        return product;
+    }
 
-    public void setProduct_id(int product_id) { this.product_id = product_id; }
+    public void setProduct(ProductPojo product) {
+        this.product = product;
+    }
 }

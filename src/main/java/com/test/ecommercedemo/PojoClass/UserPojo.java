@@ -1,22 +1,21 @@
 package com.test.ecommercedemo.PojoClass;
 
+import java.util.List;
+
 public class UserPojo {
-    int id;
-    String name;
-    String username;
-    String password;
-    String mobile_no;
-    String email_id;
-    String address;
-    String zipcode;
+    private Integer id;
+    private String name;
+    private String username;
+    private String password;
+    private String mobileNo;
+    private String emailId;
+    private String address;
+    private String zipCode;
+    //private List<CartItemsPojo> cartItemsPojo;
 
-    public int getId() {
-        return id;
-    }
+    public Integer getId() { return id; }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public void setId(Integer id) { this.id = id; }
 
     public String getName() {
         return name;
@@ -42,20 +41,16 @@ public class UserPojo {
         this.password = password;
     }
 
-    public String getMobile_no() {
-        return mobile_no;
+    public String getMobileNo() { return mobileNo; }
+
+    public void setMobileNo(String mobileNo) { this.mobileNo = mobileNo; }
+
+    public String getEmailId() {
+        return emailId;
     }
 
-    public void setMobile_no(String mobile_no) {
-        this.mobile_no = mobile_no;
-    }
-
-    public String getEmail_id() {
-        return email_id;
-    }
-
-    public void setEmail_id(String email_id) {
-        this.email_id = email_id;
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
     }
 
     public String getAddress() {
@@ -66,12 +61,22 @@ public class UserPojo {
         this.address = address;
     }
 
-    public String getZipcode() {
-        return zipcode;
+    public String getZipCode() { return zipCode; }
+
+    public void setZipCode(String zipCode) { this.zipCode = zipCode; }
+
+//    public List<CartItemsPojo> getCartItemsPojo() { return cartItemsPojo; }
+//
+//    public void setCartItemsPojo(List<CartItemsPojo> cartItemsPojo) {
+//        this.cartItemsPojo = cartItemsPojo;
+//    }
+
+
+    public UserPojo() {
     }
 
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
+    public UserPojo(Integer id, String name) {
+        this.id = id;
+        this.name = name;
     }
-
 }
