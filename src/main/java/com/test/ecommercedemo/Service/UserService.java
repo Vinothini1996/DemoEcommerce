@@ -89,9 +89,9 @@ public class UserService {
     private OrdersPojo mapOrder(Orders order){
         OrdersPojo orderPojo = new OrdersPojo();
         orderPojo.setId(order.getId());
-        orderPojo.setUserId(order.getUserId());
+        //orderPojo.setUserId(order.getUserId());
         orderPojo.setDate(order.getDate());
-        orderPojo.setTime(order.getTime());
+        //orderPojo.setTime(order.getTime());
         orderPojo.setDeliveryAddress(order.getDeliveryAddress());
 
         return orderPojo;

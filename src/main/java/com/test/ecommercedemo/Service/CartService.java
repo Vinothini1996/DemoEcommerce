@@ -23,7 +23,6 @@ public class CartService {
     private UserRepository userRepository;
 
     public List<CartItemsPojo> getCartDetails(int userId) {
-        final boolean[] check = {false};
         Optional<User> user= userRepository.findById(userId);
         if(user.isPresent()) {
             List<CartItems> cartItemsList=cartRepository.findByUser(user.get());

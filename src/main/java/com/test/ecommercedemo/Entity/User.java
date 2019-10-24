@@ -5,37 +5,50 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-@Table(name="user",uniqueConstraints = {@UniqueConstraint(columnNames = {"username","mobileNo","emailId"})})
+@Table(name="user",uniqueConstraints = {@UniqueConstraint(columnNames = {"username","mobile_no","email_id"})})
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
     @NotNull
+    @Column(name = "name")
     private String name;
 
     @NotNull
+    @Column(name = "username")
     private String username;
 
     @NotNull
+    @Column(name = "password")
     private String password;
 
     @NotNull
+    @Column(name = "mobile_no")
     private String mobileNo;
 
     @NotNull
+    @Column(name = "email_id")
     private String emailId;
 
     @NotNull
+    @Column(name = "address")
     private String address;
 
     @NotNull
+    @Column(name = "zip_code")
     private String zipCode;
 
-    @OneToMany()
-    @JoinColumn(name = "user_id")
+    @OneToMany(mappedBy = "user")
     private List<CartItems> cartItems;
+
+    @OneToMany(mappedBy = "user")
+    private List<Orders> orders;
+
+    @OneToMany(mappedBy = "user")
+    private List<CardDetails> cardDetails;
+
 
     public Integer getId() { return id; }
 
@@ -76,4 +89,12 @@ public class User {
     public List<CartItems> getCartItems() { return cartItems; }
 
     public void setCartItems(List<CartItems> cartItems) { this.cartItems = cartItems; }
+
+    public List<Orders> getOrders() { return orders; }
+
+    public void setOrders(List<Orders> orders) { this.orders = orders; }
+
+    public List<CardDetails> getCardDetails() { return cardDetails; }
+
+    public void setCardDetails(List<CardDetails> cardDetails) { this.cardDetails = cardDetails; }
 }

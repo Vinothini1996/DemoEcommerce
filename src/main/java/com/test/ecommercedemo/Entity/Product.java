@@ -8,25 +8,31 @@ import java.util.List;
 @Table(name = "product")
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
     @NotNull
+    @Column(name = "name")
     private String name;
 
     @NotNull
+    @Column(name = "description")
     private String description;
 
     @NotNull
+    @Column(name = "price")
     private Integer price;
 
     @NotNull
+    @Column(name = "stock_available")
     private Integer stockAvailable;
 
-    @OneToMany()
-    @JoinColumn(name = "product_id")
+    @OneToMany(mappedBy = "product")
     private List<CartItems> cartItemsList;
+
+    @OneToMany(mappedBy = "product")
+    private List<OrderItems> orderItems;
 
     public Integer getId() {
         return id;
@@ -67,4 +73,8 @@ public class Product {
     public List<CartItems> getCartItemsList() { return cartItemsList; }
 
     public void setCartItemsList(List<CartItems> cartItemsList) { this.cartItemsList = cartItemsList; }
+
+    public List<OrderItems> getOrderItems() { return orderItems; }
+
+    public void setOrderItems(List<OrderItems> orderItems) { this.orderItems = orderItems; }
 }

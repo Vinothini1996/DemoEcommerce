@@ -1,6 +1,7 @@
 package com.test.ecommercedemo.Service;
 
 import com.test.ecommercedemo.Entity.Orders;
+import com.test.ecommercedemo.Entity.PaymentType;
 import com.test.ecommercedemo.Entity.User;
 import com.test.ecommercedemo.PojoClass.OrdersPojo;
 import com.test.ecommercedemo.Repository.OrdersRepository;
@@ -16,22 +17,22 @@ import java.util.Optional;
 public class OrderService {
 
     @Autowired
-    OrdersRepository ordersRepository;
+    private OrdersRepository ordersRepository;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     public List<OrdersPojo> getOrderDetailByUserId(Integer userId, String paymentType) {
         Optional<User> optionalUser = userRepository.findById(userId);
         if (optionalUser.isPresent()) {
-            List<Orders> ordersList = ordersRepository.findByUserIdAndPaymentType(optionalUser.get(),paymentType);
+            PaymentType paymentType1=PaymentType.valueOf(paymentType);
+            List<Orders> ordersList = ordersRepository.findByUserIdAndPaymentType(optionalUser.get(),paymentType1);
             List<OrdersPojo> ordersPojoList = new ArrayList<>();
             ordersList.forEach(orders -> {
                 OrdersPojo ordersPojo = new OrdersPojo();
                 ordersPojo.setId(orders.getId());
-                ordersPojo.setUserId(orders.getUserId());
+                ordersPojo.setUserId(orders.getUser().getId());
                 ordersPojo.setDate(orders.getDate());
-                ordersPojo.setTime(orders.getTime());
                 ordersPojo.setDeliveryAddress(orders.getDeliveryAddress());
                 ordersPojoList.add(ordersPojo);
             });
@@ -42,13 +43,4 @@ public class OrderService {
         }
     }
 
-//    public List<OrdersPojo> getOrderDetailByUserId(Integer userId, String paymentType) {
-//        Optional<User> optionalUser = userRepository.findById(userId);
-//        if (optionalUser.isPresent()) {
-//            List<Orders> ordersList = ordersRepository.findByUserId(optionalUser);
-//        }
-//        else{
-//            return null;
-//        }
-//    }
 }

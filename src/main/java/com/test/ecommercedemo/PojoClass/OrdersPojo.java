@@ -8,7 +8,6 @@ public class OrdersPojo {
     private Integer id;
     private Integer userId;
     private Date date;
-    private Time time;
     private String deliveryAddress;
 
     public Integer getId() { return id; }
@@ -31,19 +30,8 @@ public class OrdersPojo {
         this.date = date;
     }
 
-    public Time getTime() {
-        return time;
-    }
+    public String getDeliveryAddress() { return deliveryAddress; }
 
-    public void setTime(Time time) {
-        this.time = time;
-    }
+    public void setDeliveryAddress(String deliveryAddress) { this.deliveryAddress = deliveryAddress; }
 
-    public String getDeliveryAddress() {
-        return deliveryAddress;
-    }
-
-    public void setDeliveryAddress(String deliveryAddress) {
-        this.deliveryAddress = deliveryAddress;
-    }
 }

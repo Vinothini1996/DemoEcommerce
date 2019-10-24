@@ -4,22 +4,27 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "paymentdetails")
+@Table(name = "payment_details")
 public class PaymentDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull
+    @Column(name = "id")
     private Integer id;
-
-    @NotNull
-    private Integer orderId;
 
     @Enumerated(EnumType.STRING)
     @NotNull
+    @Column(name = "payment_type")
     private PaymentType paymentType;
 
     @NotNull
+    @Column(name = "amount")
     private Integer amount;
+
+    @OneToOne
+    @JoinColumn(name = "order_id")
+    private Orders orders;
+
 
     public Integer getId() {
         return id;
@@ -27,14 +32,6 @@ public class PaymentDetails {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
     }
 
     public PaymentType getPaymentType() {
@@ -52,4 +49,8 @@ public class PaymentDetails {
     public void setAmount(Integer amount) {
         this.amount = amount;
     }
+
+    public Orders getOrders() { return orders; }
+
+    public void setOrders(Orders orders) { this.orders = orders; }
 }

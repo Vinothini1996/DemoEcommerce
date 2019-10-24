@@ -4,19 +4,17 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "cartitems")
+@Table(name = "cart_items")
 public class CartItems {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "user_id",nullable = false)
     private User user;
 
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "product_id",nullable = false)
     private Product product;

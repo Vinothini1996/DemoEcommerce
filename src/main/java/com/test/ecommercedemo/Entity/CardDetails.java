@@ -4,38 +4,34 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "carddetails")
+@Table(name = "card_details")
 public class CardDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
     @NotNull
-    private Integer userId;
-
-    @NotNull
+    @Column(name = "card_type")
     private String cardType;
 
     @NotNull
+    @Column(name = "card_no")
     private String cardNo;
 
     @NotNull
+    @Column(name = "bank_name")
     private String bankName;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) { this.id = id; }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
 
     public String getCardType() {
         return cardType;
@@ -60,4 +56,8 @@ public class CardDetails {
     public void setBankName(String bankName) {
         this.bankName = bankName;
     }
+
+    public User getUser() { return user; }
+
+    public void setUser(User user) { this.user = user; }
 }

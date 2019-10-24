@@ -4,19 +4,21 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "orderitems")
+@Table(name = "order_items")
 public class OrderItems {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
-    @NotNull
-    private Integer orderId;
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Orders orders;
 
-    @NotNull
-    private Integer productId;
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     public Integer getId() {
         return id;
@@ -26,19 +28,11 @@ public class OrderItems {
         this.id = id;
     }
 
-    public Integer getOrderId() {
-        return orderId;
-    }
+    public Orders getOrders() { return orders; }
 
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
-    }
+    public void setOrders(Orders orders) { this.orders = orders; }
 
-    public Integer getProductId() {
-        return productId;
-    }
+    public Product getProduct() { return product; }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
-    }
+    public void setProduct(Product product) { this.product = product; }
 }

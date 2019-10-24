@@ -20,5 +20,5 @@ public class ProductController {
     ProductPojo findProduct(@PathVariable("id") int id){ return productService.findProductById(id); }
 
     @PostMapping("/addProduct")
-    void addUser(@RequestParam ProductPojo productPojo){  productService.addProduct(productPojo);}
+    void addUser(@RequestBody ProductPojo productPojo){  productService.addProduct(productPojo);}
 }

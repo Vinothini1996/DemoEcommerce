@@ -19,19 +19,11 @@ public class CartItemsPojo {
         this.id = id;
     }
 
-    public UserPojo getUser() {
-        return user;
-    }
+    public UserPojo getUser() { return user; }
 
-    public void setUser(UserPojo user) {
-        this.user = user;
-    }
+    public void setUser(UserPojo user) { this.user = user; }
 
-    public ProductPojo getProduct() {
-        return product;
-    }
+    public ProductPojo getProduct() { return product; }
 
-    public void setProduct(ProductPojo product) {
-        this.product = product;
-    }
+    public void setProduct(ProductPojo product) { this.product = product; }
 }

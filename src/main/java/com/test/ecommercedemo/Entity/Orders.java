@@ -4,47 +4,42 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 //import java.util.Date;
 
 @Entity
 @Table(name = "orders")
 public class Orders {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
     @NotNull
-    private Integer userId;
-
-    @NotNull
+    @Column(name = "date")
     private Date date;
 
     @NotNull
-    private Time time;
-
-    @NotNull
+    @Column(name = "delivery_address")
     private String deliveryAddress;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToOne(mappedBy = "orders")
+    private PaymentDetails paymentDetails;
+
+    @OneToMany(mappedBy = "orders")
+    private List<OrderItems> orderItemsList;
 
     public Integer getId() { return id; }
 
     public void setId(Integer id) { this.id = id; }
 
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
     public Date getDate() { return date; }
 
     public void setDate(Date date) { this.date = date; }
-
-    public Time getTime() { return time; }
-
-    public void setTime(Time time) { this.time = time; }
 
     public String getDeliveryAddress() {
         return deliveryAddress;
@@ -53,4 +48,16 @@ public class Orders {
     public void setDeliveryAddress(String deliveryAddress) {
         this.deliveryAddress = deliveryAddress;
     }
+
+    public User getUser() { return user; }
+
+    public void setUser(User user) { this.user = user; }
+
+    public PaymentDetails getPaymentDetails() { return paymentDetails; }
+
+    public void setPaymentDetails(PaymentDetails paymentDetails) { this.paymentDetails = paymentDetails; }
+
+    public List<OrderItems> getOrderItemsList() { return orderItemsList; }
+
+    public void setOrderItemsList(List<OrderItems> orderItemsList) { this.orderItemsList = orderItemsList; }
 }
