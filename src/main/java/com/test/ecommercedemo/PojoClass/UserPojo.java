@@ -1,6 +1,6 @@
 package com.test.ecommercedemo.PojoClass;
 
-import java.util.List;
+import com.test.ecommercedemo.Entity.User;
 
 public class UserPojo {
     private Integer id;
@@ -11,6 +11,7 @@ public class UserPojo {
     private String emailId;
     private String address;
     private String zipCode;
+
     //private List<CartItemsPojo> cartItemsPojo;
 
     public Integer getId() { return id; }
@@ -75,8 +76,14 @@ public class UserPojo {
     public UserPojo() {
     }
 
-    public UserPojo(Integer id, String name) {
+    public UserPojo(Integer id, String name, String username, String password, String mobileNo, String emailId, String address, String zipCode) {
         this.id = id;
         this.name = name;
+        this.username = username;
+        this.password = password;
+        this.mobileNo = mobileNo;
+        this.emailId = emailId;
+        this.address = address;
+        this.zipCode = zipCode;
     }
 }

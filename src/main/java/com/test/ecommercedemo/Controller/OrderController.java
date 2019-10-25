@@ -14,7 +14,7 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @PostMapping("/byUser/{id}/{paymentType}")
+    @PostMapping("/byuser/{id}/{paymentType}")
     List<OrdersPojo> getOrderDetailByUserId(@PathVariable("id") Integer userId,@PathVariable("paymentType") String paymentType){
         return orderService.getOrderDetailByUserId(userId,paymentType);
     }

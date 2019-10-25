@@ -4,7 +4,7 @@ import com.test.ecommercedemo.Entity.PaymentType;
 
 public class PaymentPojo {
     private Integer id;
-    private Integer orderId;
+    //private Integer orderId;
     private PaymentType paymentType;
     private Integer amount;
 
@@ -12,9 +12,9 @@ public class PaymentPojo {
 
     public void setId(Integer id) { this.id = id; }
 
-    public Integer getOrderId() { return orderId; }
+    //public Integer getOrderId() { return orderId; }
 
-    public void setOrderId(Integer orderId) { this.orderId = orderId; }
+    //public void setOrderId(Integer orderId) { this.orderId = orderId; }
 
     public PaymentType getPaymentType() { return paymentType; }
 

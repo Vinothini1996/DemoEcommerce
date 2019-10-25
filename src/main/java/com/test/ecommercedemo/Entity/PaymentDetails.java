@@ -8,7 +8,6 @@ import javax.validation.constraints.NotNull;
 public class PaymentDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
     @Column(name = "id")
     private Integer id;
 

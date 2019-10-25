@@ -6,7 +6,7 @@ import java.sql.Time;
 
 public class OrdersPojo {
     private Integer id;
-    private Integer userId;
+    //private Integer userId;
     private Date date;
     private String deliveryAddress;
 
@@ -14,13 +14,13 @@ public class OrdersPojo {
 
     public void setId(Integer id) { this.id = id; }
 
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
+//    public Integer getUserId() {
+//        return userId;
+//    }
+//
+//    public void setUserId(Integer userId) {
+//        this.userId = userId;
+//    }
 
     public Date getDate() {
         return date;

@@ -1,8 +1,12 @@
 package com.test.ecommercedemo.Service;
 
+import com.test.ecommercedemo.Entity.Orders;
 import com.test.ecommercedemo.Entity.Product;
+import com.test.ecommercedemo.Entity.User;
+import com.test.ecommercedemo.PojoClass.OrdersPojo;
 import com.test.ecommercedemo.PojoClass.ProductPojo;
 import com.test.ecommercedemo.Repository.ProductRepository;
+import com.test.ecommercedemo.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +18,9 @@ import java.util.Optional;
 public class ProductService {
 
     @Autowired
-    ProductRepository productRepository;
+    private ProductRepository productRepository;
 
-    public ProductPojo getProductDetail(Product product){
+    private ProductPojo getProductDetail(Product product){
         ProductPojo productPojo=new ProductPojo();
         productPojo.setId(product.getId());
         productPojo.setName(product.getName());
@@ -59,5 +63,7 @@ public class ProductService {
         product.setStockAvailable(productPojo.getStockAvailable());
         productRepository.save(product);
     }
+
+
 
 }

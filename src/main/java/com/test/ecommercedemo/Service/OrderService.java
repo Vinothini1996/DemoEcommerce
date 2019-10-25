@@ -31,7 +31,7 @@ public class OrderService {
             ordersList.forEach(orders -> {
                 OrdersPojo ordersPojo = new OrdersPojo();
                 ordersPojo.setId(orders.getId());
-                ordersPojo.setUserId(orders.getUser().getId());
+//                ordersPojo.setUserId(orders.getUser().getId());
                 ordersPojo.setDate(orders.getDate());
                 ordersPojo.setDeliveryAddress(orders.getDeliveryAddress());
                 ordersPojoList.add(ordersPojo);

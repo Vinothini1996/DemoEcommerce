@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-@Table(name="user",uniqueConstraints = {@UniqueConstraint(columnNames = {"username","mobile_no","email_id"})})
+@Table(name="user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +17,7 @@ public class User {
     private String name;
 
     @NotNull
-    @Column(name = "username")
+    @Column(name = "username",unique = true)
     private String username;
 
     @NotNull
@@ -25,11 +25,11 @@ public class User {
     private String password;
 
     @NotNull
-    @Column(name = "mobile_no")
+    @Column(name = "mobile_no",unique = true)
     private String mobileNo;
 
     @NotNull
-    @Column(name = "email_id")
+    @Column(name = "email_id",unique = true)
     private String emailId;
 
     @NotNull

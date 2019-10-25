@@ -16,7 +16,7 @@ public class PaymentController {
     @Autowired
     private PaymentService paymentService;
 
-    @GetMapping("/getDetailsOrderId/{id}")
+    @GetMapping("/byorderid/{id}")
     List<PaymentPojo> findPaymentDetailsByOrderId(@PathVariable("id") Integer orderId){
         return paymentService.getPaymentDetailByOrderId(orderId);
     }

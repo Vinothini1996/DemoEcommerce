@@ -18,6 +18,6 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
-    @GetMapping("listcartbyuserid/{id}")
+    @GetMapping("listbyuserid/{id}")
     List<CartItemsPojo> getCartDetailsByUserId(@PathVariable("id") int userId){ return cartService.getCartDetails(userId); }
 }

@@ -30,8 +30,8 @@ public class CartService {
             cartItemsList.forEach(cartItems -> {
                 CartItemsPojo cartItemsPojo=new CartItemsPojo();
                 cartItemsPojo.setId(cartItems.getId());
-                cartItemsPojo.setUser(new UserPojo(cartItems.getUser().getId(), cartItems.getUser().getName()));
-                cartItemsPojo.setProduct(new ProductPojo(cartItems.getProduct().getId(), cartItems.getProduct().getName()));
+                cartItemsPojo.setUser(new UserPojo(cartItems.getUser().getId(), cartItems.getUser().getName(),cartItems.getUser().getUsername(),cartItems.getUser().getPassword(),cartItems.getUser().getMobileNo(),cartItems.getUser().getEmailId(),cartItems.getUser().getAddress(),cartItems.getUser().getZipCode()));
+                cartItemsPojo.setProduct(new ProductPojo(cartItems.getProduct().getId(), cartItems.getProduct().getName(),cartItems.getProduct().getDescription(),cartItems.getProduct().getPrice(),cartItems.getProduct().getStockAvailable()));
                 cartItemsPojoList.add(cartItemsPojo);
             });
             return cartItemsPojoList;

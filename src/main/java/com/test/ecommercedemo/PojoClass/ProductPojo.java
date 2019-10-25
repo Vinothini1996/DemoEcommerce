@@ -47,11 +47,14 @@ public class ProductPojo {
         this.stockAvailable = stockAvailable;
     }
 
-    public ProductPojo(Integer id, String name) {
-        this.id = id;
-        this.name = name;
+    public ProductPojo() {
     }
 
-    public ProductPojo() {
+    public ProductPojo(Integer id, String name, String description, Integer price, Integer stockAvailable) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.stockAvailable = stockAvailable;
     }
 }

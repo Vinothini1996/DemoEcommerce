@@ -1,20 +1,14 @@
 package com.test.ecommercedemo.Service;
 
-import com.test.ecommercedemo.Entity.CartItems;
-import com.test.ecommercedemo.Entity.Orders;
-import com.test.ecommercedemo.Entity.User;
-import com.test.ecommercedemo.PojoClass.CartItemsPojo;
-import com.test.ecommercedemo.PojoClass.OrdersPojo;
-import com.test.ecommercedemo.PojoClass.UserPojo;
-import com.test.ecommercedemo.Repository.OrdersRepository;
-import com.test.ecommercedemo.Repository.UserRepository;
+import com.test.ecommercedemo.Entity.*;
+import com.test.ecommercedemo.PojoClass.*;
+import com.test.ecommercedemo.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.stream.Collector;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,6 +17,14 @@ public class UserService {
     private UserRepository userRepository;
     @Autowired
     private OrdersRepository orderRepository;
+    @Autowired
+    private ProductRepository productRepository;
+    @Autowired
+    private OrderItemRepository orderItemRepository;
+    @Autowired
+    private PaymentRepository paymentRepository;
+    @Autowired
+    private CartRepository cartRepository;
 
     private UserPojo getUserDetail(User user){
         UserPojo userPojo = new UserPojo();
@@ -91,7 +93,6 @@ public class UserService {
         orderPojo.setId(order.getId());
         //orderPojo.setUserId(order.getUserId());
         orderPojo.setDate(order.getDate());
-        //orderPojo.setTime(order.getTime());
         orderPojo.setDeliveryAddress(order.getDeliveryAddress());
 
         return orderPojo;
@@ -109,5 +110,56 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public void buyProduct(OrderPostPojo order1Pojo){
+        Optional<User> user=userRepository.findById(order1Pojo.getUserPojo().getId());
+        if(user.isPresent()) {
+            Orders orders = new Orders();
+            orders.setUser(user.get());
+            orders.setDate(order1Pojo.getDate());
+            orders.setDeliveryAddress(order1Pojo.getDeliveryAddress());
+            Orders newOrder=orderRepository.save(orders);
+
+            Optional<Product> product=productRepository.findById(order1Pojo.getProductPojo().getId());
+            if(product.isPresent()) {
+                OrderItems orderItems = new OrderItems();
+                orderItems.setOrders(newOrder);
+                orderItems.setProduct(product.get());
+                orderItemRepository.save(orderItems);
+            }
+
+            PaymentDetails paymentDetails=new PaymentDetails();
+            paymentDetails.setOrders(newOrder);
+            paymentDetails.setPaymentType(order1Pojo.getPaymentPojo().getPaymentType());
+            paymentDetails.setAmount(order1Pojo.getProductPojo().getPrice());
+            paymentRepository.save(paymentDetails);
+
+        }
+    }
+
+    public void buyFromCart(OrderByCartPojo orderByCartPojo){
+        Optional<CartItems> cartItems=cartRepository.findById(orderByCartPojo.getCartItemsPojo().getId());
+        if(cartItems.isPresent()){
+            Orders orders = new Orders();
+            Optional<User> optionalUser = userRepository.findById(cartItems.get().getUser().getId());
+            orders.setUser(optionalUser.get());
+            orders.setDate(orderByCartPojo.getDate());
+            orders.setDeliveryAddress(orderByCartPojo.getDeliveryAddress());
+            Orders newOrder=orderRepository.save(orders);
+
+            OrderItems orderItems = new OrderItems();
+            Optional<Product> optionalProduct = productRepository.findById(cartItems.get().getProduct().getId());
+            orderItems.setOrders(newOrder);
+            orderItems.setProduct(optionalProduct.get());
+            orderItemRepository.save(orderItems);
+
+            PaymentDetails paymentDetails=new PaymentDetails();
+            paymentDetails.setOrders(newOrder);
+            paymentDetails.setPaymentType(orderByCartPojo.getPaymentPojo().getPaymentType());
+            paymentDetails.setAmount(orderByCartPojo.getProductPojo().getPrice());
+            paymentRepository.save(paymentDetails);
+
+        }
+        cartRepository.delete(cartItems.get());
+    }
 
 }

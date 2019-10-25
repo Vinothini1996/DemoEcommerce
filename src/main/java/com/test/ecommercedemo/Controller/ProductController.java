@@ -1,5 +1,6 @@
 package com.test.ecommercedemo.Controller;
 
+import com.test.ecommercedemo.PojoClass.OrdersPojo;
 import com.test.ecommercedemo.PojoClass.ProductPojo;
 import com.test.ecommercedemo.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,13 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/listProducts")
+    @GetMapping("/listproducts")
     List<ProductPojo> ListProducts() { return productService.ListProducts(); }
 
-    @GetMapping("/getProduct/{id}")
+    @GetMapping("/getproduct/{id}")
     ProductPojo findProduct(@PathVariable("id") int id){ return productService.findProductById(id); }
 
-    @PostMapping("/addProduct")
+    @PostMapping("/addproduct")
     void addUser(@RequestBody ProductPojo productPojo){  productService.addProduct(productPojo);}
+
 }
